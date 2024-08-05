@@ -1,0 +1,16 @@
+RESENJE - POGLEDI
+------------------------------------------
+CREATE VIEW `Energetika`.`SviPodaciOEvidenciji` AS select `EvidencijaElektrana`.`ID`, `EvidencijaElektrana`.`NazivElektrane`,  `EvidencijaElektrana`.`Mesto`,  `EvidencijaElektrana`.`Adresa`, `EvidencijaElektrana`.`DatumPustanjaURad`, `VrstaPogona`.`Naziv` as `NazivEE` from `Energetika`.`EvidencijaElektrana` INNER JOIN `Energetika`.`VrstaPogona` ON `Energetika`.`EvidencijaElektrana`.`SifraVrstePogona`=`Energetika`.`VrstaPogona`.`Sifra`;
+
+RESENJE ZA STORED PROCEDURU- insert into
+-----------------------
+USE `Energetika`;
+DROP procedure IF EXISTS `DodajNovuEvidenciju`;
+DELIMITER $$
+USE `Energetika`$$
+CREATE PROCEDURE `DodajNovuEvidenciju` (IN IDParametar int, IN NazivElektraneParametar varchar(100), IN MestoParametar varchar(100),  IN AdresaParametar varchar(50), IN DatumPustanjaURadParametar date,  IN SifraVrstePogonaParametar int)
+BEGIN
+INSERT INTO `EvidencijaElektrana` (`ID`, `NazivElektrane`, `Mesto`, `Adresa`, `DatumPustanjaURad`, `SifraVrstePogona`) VALUES (IDParametar, NazivElektraneParametar, MestoParametar, AdresaParametar, DatumPustanjaURadParametar, SifraVrstePogonaParametar);
+END
+$$
+DELIMITER ;

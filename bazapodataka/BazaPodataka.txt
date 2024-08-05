@@ -1,0 +1,43 @@
+﻿CREATE DATABASE `Energetika` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+create table `Energetika`.`EvidencijaElektrana`
+(
+   ID int NOT NULL PRIMARY KEY,
+   NazivElektrane varchar(100) not null,
+   Mesto varchar(100) not null,
+   Adresa varchar(50) not null,
+   DatumPustanjaURad date null,
+   SifraVrstePogona int not null
+);
+
+
+create table `Energetika`.`VrstaPogona`
+(
+   Sifra int NOT NULL PRIMARY KEY,
+   Naziv varchar(50) not null,
+   UkupanBrojElektrana int not null
+);
+
+alter table `Energetika`.`EvidencijaElektrana` add constraint FK_PRIPADA foreign key (SifraVrstePogona) references `Energetika`.`VrstaPogona`(Sifra) on delete restrict on update cascade;
+
+
+create table `Energetika`.`KORISNIK`
+(
+   IDKORISNIKA          int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   PREZIME              varchar(50) not null,
+   IME                  varchar(40) not null,
+   EMAIL                varchar(60) not null,
+   KORISNICKOIME        varchar(30) not null,
+   SIFRA                varchar(30) not null,
+   URLSLike		varchar(250) null,
+   statusucesca		varchar(30) not null
+);
+
+
+
+INSERT INTO `Energetika`.`KORISNIK` (PREZIME, IME, EMAIL, KORISNICKOIME, SIFRA, URLSLIKE, STATUSUCESCA) VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin');
+
+
+INSERT INTO `Energetika`.`VrstaPogona` (Sifra, Naziv, UkupanBrojElektrana) VALUES ('0', 'Вода',0);
+INSERT INTO `Energetika`.`VrstaPogona` (Sifra, Naziv, UkupanBrojElektrana) VALUES ('1', 'Ветар',0);
+INSERT INTO `Energetika`.`VrstaPogona` (Sifra, Naziv, UkupanBrojElektrana) VALUES ('2', 'Угаљ',0);
