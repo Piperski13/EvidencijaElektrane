@@ -50,7 +50,7 @@
 <td align="center">
 
 
-<!------------------------FORMA ZA UNOS ---- ACTION="studentsnimi.php" --->
+<!------------------------FORMA ZA UNOS ---- ACTION="evidencijasnimi.php" --->
 <table style="width:50%;" bgcolor="#D8E7F4" padding:0" align="center" cellspacing="0" cellpadding="0" border="0">
 <form name="FormaZaUnosEvidencija" action="EvidencijaIzmeni.php" METHOD="POST" enctype="multipart/form-data" >
 
@@ -148,7 +148,7 @@
 <select name="sifraVrstePogona" required TABINDEX=7>		
 	<option value="">изаберите...</option>
 	<?php
-	// upis vrednosti iz bp - Tip vozila
+	// upis vrednosti iz bp - Tip/sifra vrste pogona
 		
 	// PREDSTAVLJANJE U OPTION KROZ FOR CIKLUS
 	if ($UkupanBrojZapisa>0) 

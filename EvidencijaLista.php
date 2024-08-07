@@ -37,8 +37,8 @@
 				$filter=null;
 				$EvidencijaViewObject->DajSvePodatkeOEvidenciji($filter);
 				// sada raspolazemo sa:
-				//$StudentViewObject->Kolekcija 
-				//$StudentViewObject->BrojZapisa
+				//$EvidencijaViewObject->Kolekcija 
+				//$EvidencijaViewObject->BrojZapisa
 			}
 
 

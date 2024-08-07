@@ -32,8 +32,8 @@ if ($KonekcijaObject->konekcijaDB) // uspesno realizovana konekcija ka DBMS i ba
 				$filter=null;
 				$EvidencijaViewObject->DajSvePodatkeOEvidenciji($filter);
 				// sada raspolazemo sa:
-				//$StudentViewObject->Kolekcija 
-				//$StudentViewObject->BrojZapisa
+				//$EvidencijaViewObject->Kolekcija 
+				//$EvidencijaViewObject->BrojZapisa
 			}
 
 }

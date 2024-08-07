@@ -48,7 +48,7 @@
 		$EvidencijaObject->SifraVrstePogona=$SifraVrstePogona;
 		$greska1=$EvidencijaObject->DodajNovuEvidenciju();
 		
-		// inkrement broja studenata kroz klasu DBSmer
+		// inkrement broja elektrana kroz klasu DBVrstaPogona
         require "klase/DBVrstaPogona.php";
 		$VrstaPogonaObject = new DBVrstaPogona($KonekcijaObject, 'VrstaPogona');
 		$greska2=$VrstaPogonaObject->InkrementirajBrojEvidencija($SifraVrstePogona);

@@ -11,7 +11,7 @@
 					header ('Location:index.php');
 				}	
 
-// REALIZACIJA CITANJA hidden polja za filter radi pristupa, cita sa StudentiLista
+// REALIZACIJA CITANJA hidden polja za filter radi pristupa, cita sa EvidencijaLista
 $StariID=$_POST['ID'];
 
 // KONEKTOVANJE NA BAZU
@@ -24,14 +24,14 @@ $StariID=$_POST['ID'];
 	
 	require "klase/BaznaTabela.php";
 	
-	// IZDVAJANJE PODATAKA KORISTECI KLASU SMER
+	// IZDVAJANJE PODATAKA KORISTECI KLASU VRSTE POGONA
 	require "klase/DBVrstaPogona.php";
 	$VrstaPogonaObject = new DBVrstaPogona($KonekcijaObject, "VrstaPogona");
 	$VrstaPogonaObject->UcitajKolekcijuSvihVrstaPogona();
 	$KolekcijaZapisa= $VrstaPogonaObject->Kolekcija;
 	$UkupanBrojZapisa= $VrstaPogonaObject->BrojZapisa;
 
-	// PREUZIMANJE STARIH VREDNOSTI ZA IZABRANOG STUDENTA
+	// PREUZIMANJE STARIH VREDNOSTI ZA IZABRANU EVIDENCIJU ELEKTANE
 	require "klase/DBEvidencijaElektrana.php";
 	$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrane');
 	$EvidencijaObject->UcitajEvidencijuPoID($StariID);

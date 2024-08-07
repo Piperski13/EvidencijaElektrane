@@ -8,7 +8,7 @@ $IDZaStampu=$_POST['IDFilter'];
 	$KonekcijaObject = new Konekcija("klase/BaznaParametriKonekcije.xml");
 	$KonekcijaObject->connect();
 	
-	// PREUZIMANJE STARIH VREDNOSTI ZA IZABRANOG STUDENTA
+	// PREUZIMANJE STARIH VREDNOSTI ZA IZABRANU EVIDENCIJU ELEKTANE
 	require "klase/BaznaTabela.php";
 	require "klase/DBEvidencijaElektranaV.php";
 	$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');

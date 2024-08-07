@@ -23,7 +23,7 @@
 	
 	//echo "KONEKCIJA-BAZA:".$bazapodataka;
 	
-	// IZDVAJANJE PODATAKA KORISTECI KLASU SMER
+	// IZDVAJANJE PODATAKA KORISTECI KLASU VRSTE POGONA
 	require "klase/BaznaTabela.php";
 	require "klase/DBVrstaPogona.php";
 	$VrstaPogonaObject = new DBVrstaPogona($KonekcijaObject, "VrstaPogona");

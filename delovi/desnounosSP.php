@@ -50,7 +50,7 @@
 <td align="left">
 
 
-<!------------------------FORMA ZA UNOS ---- ACTION="studentsnimi.php" --->
+<!------------------------FORMA ZA UNOS ---- ACTION="evidencijasnimi.php" --->
 <table style="width:50%;" bgcolor="#ffffff" padding:0" align="left" cellspacing="0" cellpadding="0" border="0">
 <form name="FormaZaUnosEvidencije" action="evidencijasnimiSP.php" METHOD="POST" enctype="multipart/form-data" >
 

@@ -1,6 +1,6 @@
 <?php
 class DBEvidencijaElektrana extends Tabela 
-// rad sa stored procedurom za snimanje novog studenta
+// rad sa stored procedurom za snimanje nove evidencije elektrane
 {
 // ATRIBUTI
 private $bazapodataka;
