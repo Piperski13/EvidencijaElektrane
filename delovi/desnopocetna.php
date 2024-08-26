@@ -13,7 +13,7 @@
 <font face="Trebuchet MS" color="darkblue" size="4px">
 <b>СПИСАК ЕВИДЕНЦИЈА</br> </font>
 <form action="" method="GET">
-Редни број евиденција: <input type="text" name="filter" />
+ИД евиденције електранте: <input type="text" name="filter" />
 <input type="submit" name="filtriraj" value="FILTRIRAJ" />
 <input type="submit" name="svi" value="SVI" />
 
