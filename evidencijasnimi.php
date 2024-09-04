@@ -27,13 +27,13 @@
 	if ($KonekcijaObject->konekcijaDB) // uspesno realizovana konekcija ka DBMS i bazi podataka
     {	
 	// provera poslovne logike
-		//require "klase/Evidencija.php";
-		//$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrane');
-		//$dozvoljenaEvidencija=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($statusEvidencijaElektrana);
+		require "klase/Evidencija.php";
+		$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrane');
+		$dozvoljenaEvidencija=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($statusEvidencijaElektrana);
 			
-		//if ($dozvoljenaEvidencija=="DA")
-			//{
-		//echo "USPESNA KONEKCIJA";
+		if ($dozvoljenaEvidencija=="DA")
+			
+		echo "USPESNA KONEKCIJA";
 		require "klase/BaznaTransakcija.php";
 		$TransakcijaObject = new Transakcija($KonekcijaObject);
 		$TransakcijaObject->ZapocniTransakciju();
