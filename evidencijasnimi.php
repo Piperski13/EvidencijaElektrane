@@ -1,6 +1,6 @@
 ﻿ <?php
         
-		//session_start();  
+		session_start();  
 	   // citanje vrednosti iz sesije - da bismo uvek proverili da li je to prijavljeni korisnik
 	   //$idkorisnika=$_SESSION["idkorisnika"];
 	   
@@ -28,8 +28,8 @@
     {	
 	// provera poslovne logike
 		require "klase/Evidencija.php";
-		$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrane');
-		$dozvoljenaEvidencija=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($statusEvidencijaElektrana);
+		$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrana');
+		$dozvoljenaEvidencija=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($SifraVrstePogona);
 			
 		if ($dozvoljenaEvidencija=="DA")
 			

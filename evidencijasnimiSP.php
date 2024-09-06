@@ -28,8 +28,8 @@
     {	
 	// provera poslovne logike
 		require "klase/Evidencija.php";
-		$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrane');
-		$dozvoljenaPrijava=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($statusEvidencijaElektrana);
+		$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrana');
+		$dozvoljenaPrijava=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($SifraVrstePogona);
 			
 		if ($dozvoljenaPrijava=="DA")
 			{
