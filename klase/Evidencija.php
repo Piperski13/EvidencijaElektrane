@@ -19,9 +19,9 @@ $xml=simplexml_load_file("klase/".$SifraVrstePogonaParametar.".xml") or die("Nij
 $maxBrojEvidencijaElektrana=$xml->maxBrojEvidencijaElektrana;
 
 // izdvajanje koliko trenutno imamo upisanih za tu vrstu signalizacije u bazi podataka
-$NazivTrazenogPolja="count(`ID`)";
-$KriterijumFiltriranja="`SifraVrstePogona`='".$SifraVrstePogonaParametar."'";
-$KriterijumSortiranja="`ID`"; // nema potrebe da se sortira, ali ne menjamo baznu klasu
+$NazivTrazenogPolja="`UkupanBrojElektrana`";
+$KriterijumFiltriranja="`Sifra`='".$SifraVrstePogonaParametar."'";
+$KriterijumSortiranja="`Sifra`"; // nema potrebe da se sortira, ali ne menjamo baznu klasu
 $trenutanBrojEvidencijaElektrana=$this->DajVrednostJednogPoljaPrvogZapisa($NazivTrazenogPolja, $KriterijumFiltriranja, $KriterijumSortiranja); 
 
 // uporedjivanje max i trenutno i odlucivanje

@@ -2,7 +2,7 @@
         
 		session_start();  
 	   // citanje vrednosti iz sesije - da bismo uvek proverili da li je to prijavljeni korisnik
-	   //$idkorisnika=$_SESSION["idkorisnika"];
+	   $idkorisnika=$_SESSION["idkorisnika"];
 	   
 	      // -------------------------------------
 		// UPLOAD FAJLA SLIKE
@@ -25,28 +25,28 @@
 	$KonekcijaObject = new Konekcija('klase/BaznaParametriKonekcije.xml');
 	$KonekcijaObject->connect();
 	if ($KonekcijaObject->konekcijaDB) // uspesno realizovana konekcija ka DBMS i bazi podataka
-    {	
+    	
 	// provera poslovne logike
 		require "klase/Evidencija.php";
-		$EvidencijaObject = new Evidencija($KonekcijaObject, 'EvidencijaElektrana');
+		$EvidencijaObject = new Evidencija($KonekcijaObject, 'vrstapogona');
 		$dozvoljenaEvidencija=$EvidencijaObject->DaLiImaMestaZaEvidencijuElektrane($SifraVrstePogona);
 			
 		if ($dozvoljenaEvidencija=="DA")
-			
-		echo "USPESNA KONEKCIJA";
+		{	
+		// echo "USPESNA KONEKCIJA";
 		require "klase/BaznaTransakcija.php";
 		$TransakcijaObject = new Transakcija($KonekcijaObject);
 		$TransakcijaObject->ZapocniTransakciju();
 		
 		require "klase/DBEvidencijaElektrana.php";
-		$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');
-		$EvidencijaObject->ID=$ID;
-		$EvidencijaObject->NazivElektrane=$NazivElektrane;
-		$EvidencijaObject->Mesto=$Mesto;
-		$EvidencijaObject->Adresa=$Adresa;
-		$EvidencijaObject->DatumPustanjaURad=$DatumPustanjaURad;
-		$EvidencijaObject->SifraVrstePogona=$SifraVrstePogona;
-		$greska1=$EvidencijaObject->DodajNovuEvidenciju();
+		$EvidencijaObjectDB = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');
+		$EvidencijaObjectDB->ID=$ID;
+		$EvidencijaObjectDB->NazivElektrane=$NazivElektrane;
+		$EvidencijaObjectDB->Mesto=$Mesto;
+		$EvidencijaObjectDB->Adresa=$Adresa;
+		$EvidencijaObjectDB->DatumPustanjaURad=$DatumPustanjaURad;
+		$EvidencijaObjectDB->SifraVrstePogona=$SifraVrstePogona;
+		$greska1=$EvidencijaObjectDB->DodajNovuEvidenciju();
 		
 		// inkrement broja elektrana kroz klasu DBVrstaPogona
         require "klase/DBVrstaPogona.php";
