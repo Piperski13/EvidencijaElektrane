@@ -114,6 +114,7 @@ else
 		echo "<td>";
 		echo "<form ACTION=\"EvidencijaObrisi.php\" METHOD=\"POST\">";
 		echo "<input type=\"hidden\" name=\"ID\" value=\"$ID\">";
+		echo "<input type=\"hidden\" name=\"SifraVrstePogona\" value=\"$SifraVrstePogona\">";
 		echo "<b><font face=\"Trebuchet MS\" color:#3F4534 size=\"2px\"><input TYPE=\"submit\" name=\"obrisiEvidenciju\" value=\"OBRISI\"  onclick=\"return confirm('Da li ste sigurni da zelite da obrisete zapis?')\"/></font></b>";
 		echo "</form>";
 		echo "</td>";

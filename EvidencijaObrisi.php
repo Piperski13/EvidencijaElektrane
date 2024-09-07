@@ -12,6 +12,7 @@
 	   
 	   // preuzimanje vrednosti sa forme
 	   $IdZaBrisanje=$_POST['ID'];
+		 $NazivVrstaPogona=$_POST['SifraVrstePogona'];
 	   
       // koristimo klasu za poziv procedure za konekciju
 	require "klase/BaznaKonekcija.php";
@@ -21,8 +22,22 @@
 	if ($KonekcijaObject->konekcijaDB) // uspesno realizovana konekcija ka DBMS i bazi podataka
     {	
 		require "klase/DBEvidencijaElektrana.php";
-		$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrane');
+		$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');
 		$greska=$EvidencijaObject->ObrisiEvidenciju($IdZaBrisanje);
+
+		// dekrement broja primena kroz klasu DBVrstaPogona
+		require "klase/DBVrstaPogona.php";
+    $VPObject = new DBVrstaPogona($KonekcijaObject, 'VrstaPogona');
+
+    // Pronađi sifru
+    $sifraVrstapogona = $VPObject->DajSifruNaOsnovuNaziva($NazivVrstaPogona);
+    
+    if ($sifraVrstapogona !== null) {
+        // Dekrement broja primena
+        $greska2 = $VPObject->DekrementirajBrojEvidencija($sifraVrstapogona);
+    } else {
+        error_log("Sifra za naziv '" . $NazivVrstaPogona . "' nije pronađena.");
+    }
 	}
 		
     $KonekcijaObject->disconnect();

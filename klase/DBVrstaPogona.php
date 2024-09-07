@@ -36,6 +36,68 @@ public function InkrementirajBrojEvidencija($IDStatusa)
 	return $greska;
 	
 	}
+
+	public function DekrementirajBrojEvidencija($IDStatusa)
+{
+    error_log("Metoda DekrementirajBrojEvidencija je pozvana!");
+
+    $IDStatusa = (int)$IDStatusa; // Osigurava da je int za SQL query
+
+    // Kriterijum filtriranja na osnovu IDStatusa
+    $KriterijumFiltriranja = "Sifra=" . $IDStatusa;
+    
+    // Dohvatanje trenutne vrednosti UkupanBrojElektrana
+    $StaraVrednostUkBrElektrana = $this->DajVrednostJednogPoljaPrvogZapisa('UkupanBrojElektrana', $KriterijumFiltriranja, 'Sifra');
+    
+    // Logovanje stare vrednosti
+    error_log("Stara vrednost UkupanBrojElektrana: " . $StaraVrednostUkBrElektrana);
+
+    // Provera da li je vrednost veća od 0 pre dekrementiranja
+    if ($StaraVrednostUkBrElektrana > 0) {
+        $NovaVrednostUkBrPrimena = $StaraVrednostUkBrElektrana - 1;
+
+        // Izvršavanje SQL upita za ažuriranje
+        $SQL = "UPDATE `" . $this->NazivBazePodataka . "`.`" . $this->NazivTabele . "` SET UkupanBrojElektrana=" . $NovaVrednostUkBrPrimena . " WHERE Sifra=" . $IDStatusa;
+        error_log("SQL upit za dekrementiranje: " . $SQL);
+        
+        // Izvrši SQL upit
+        $rezultat = mysqli_query($this->OtvorenaKonekcija->konekcijaDB, $SQL);
+        
+        if (!$rezultat) {
+            $greska = "Greška pri izvršavanju SQL upita: " . mysqli_error($this->OtvorenaKonekcija->konekcijaDB);
+            error_log($greska);
+            return $greska;
+        }
+    } else {
+        // Ako je trenutna vrednost 0 ili manja, nema smanjenja
+        $greska = "Broj primena je već na minimalnoj vrednosti (0).";
+        error_log($greska);
+        return $greska;
+    }
+
+    return null; // Ako nema greške
+}
+
+public function DajSifruNaOsnovuNaziva($naziv)
+{
+    // Logovanje poziva metode
+    error_log("Metoda DajSifruNaOsnovuNaziva je pozvana sa nazivom: " . $naziv);
+
+    // Provera vrednosti naziva i vraćanje odgovarajuće šifre
+    if ($naziv === 'Вода') {
+        return 0;
+    } elseif ($naziv === 'Ветар') {
+        return 1;
+    } elseif ($naziv === 'Угаљ') {
+        return 2;
+    } else {
+        // Ako naziv ne odgovara nijednom poznatom vrednosti, vraća null
+        error_log("Nepoznat naziv: " . $naziv);
+        return null;
+    }
+}
+
+
 }
 
 ?>
