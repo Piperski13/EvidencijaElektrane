@@ -44,7 +44,7 @@ public function InkrementirajBrojEvidencija($IDStatusa)
     // Kriterijum filtriranja na osnovu IDStatusa
     $KriterijumFiltriranja = "Sifra=" . $IDStatusa;
     
-    // Dohvatanje trenutne vrednosti UkupanBrojElektrana
+    // Uzimanje trenutne vrednosti UkupanBrojElektrana
     $StaraVrednostUkBrElektrana = $this->DajVrednostJednogPoljaPrvogZapisa('UkupanBrojElektrana', $KriterijumFiltriranja, 'Sifra');
     
 
