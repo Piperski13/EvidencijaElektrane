@@ -21,35 +21,40 @@
 	   $StariID=$_POST['StariID'];
 	   $nazivElektrane=$_POST['nazivElektrane'];
 	   $mesto=$_POST['mesto'];
-
 	   $adresa=$_POST['adresa'];
 	   $datumPustanjaURad=$_POST['datumPustanjaURad'];
-
-	   if (isset($_POST['sifraVrstePogona']))
-	   {
-		$sifraVrstePogona=$_POST['sifraVrstePogona'];
-	   }
-	   else // ako nije nista promenjeno
-	   {
-		$StariSifraVrstePogona=$_POST['sifraVrstePogona'];
-		$sifraVrstePogona=$StariSifraVrstePogona;
-	   }
+		 
+		 $sifraVrstePogona=$_POST['sifraVrstePogona'];
+		 $StaraSifraVrstePogona=$_POST['staraSifraVrstePogona'];
 	  
-	   // koristimo klasu za poziv procedure za konekciju
-		require "klase/BaznaKonekcija.php";
-		require "klase/BaznaTabela.php";
-		$KonekcijaObject = new Konekcija('klase/BaznaParametriKonekcije.xml');
-		$KonekcijaObject->connect();
-		if ($KonekcijaObject->konekcijaDB) // uspesno realizovana konekcija ka DBMS i bazi podataka
-		{	
+	    // koristimo klasu za poziv procedure za konekciju
+			require "klase/BaznaKonekcija.php";
+			require "klase/BaznaTabela.php";
 			require "klase/DBEvidencijaElektrana.php";
-			$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');
-			$greska=$EvidencijaObject->IzmeniEvidenciju($StariID, $id, $nazivElektrane, $mesto, $adresa, $datumPustanjaURad, $sifraVrstePogona);
-		}
-		else
-		{
-			echo "Nije uspostavljena konekcija ka bazi podataka!";
-		}
+			require "klase/DBVrstaPogona.php";
+	
+			$KonekcijaObject = new Konekcija('klase/BaznaParametriKonekcije.xml');
+			$KonekcijaObject->connect();
+	
+			if ($KonekcijaObject->konekcijaDB) {	
+					// Kreiraj objekte za evidenciju i vrstu pogona
+					$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');
+					$VrstaPogonaObject = new DBVrstaPogona($KonekcijaObject, 'VrstaPogona');
+	
+					// Provera da li je šifra vrste pogona promenjena
+					if ($sifraVrstePogona != $StaraSifraVrstePogona) {
+							// Dekrementiraj staru šifru pogona
+							$VrstaPogonaObject->DekrementirajBrojEvidencija($StaraSifraVrstePogona);
+	
+							// Inkrementiraj novu šifru pogona
+							$VrstaPogonaObject->InkrementirajBrojEvidencija($sifraVrstePogona);
+					}
+	
+					// Izvrši izmenu evidencije
+					$greska = $EvidencijaObject->IzmeniEvidenciju($StariID, $id, $nazivElektrane, $mesto, $adresa, $datumPustanjaURad, $sifraVrstePogona);
+			} else {
+					echo "Nije uspostavljena konekcija ka bazi podataka!";
+			}
 		
     $KonekcijaObject->disconnect();
 	   

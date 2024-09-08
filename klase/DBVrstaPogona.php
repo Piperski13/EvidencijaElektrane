@@ -39,8 +39,6 @@ public function InkrementirajBrojEvidencija($IDStatusa)
 
 	public function DekrementirajBrojEvidencija($IDStatusa)
 {
-    error_log("Metoda DekrementirajBrojEvidencija je pozvana!");
-
     $IDStatusa = (int)$IDStatusa; // Osigurava da je int za SQL query
 
     // Kriterijum filtriranja na osnovu IDStatusa
@@ -49,8 +47,6 @@ public function InkrementirajBrojEvidencija($IDStatusa)
     // Dohvatanje trenutne vrednosti UkupanBrojElektrana
     $StaraVrednostUkBrElektrana = $this->DajVrednostJednogPoljaPrvogZapisa('UkupanBrojElektrana', $KriterijumFiltriranja, 'Sifra');
     
-    // Logovanje stare vrednosti
-    error_log("Stara vrednost UkupanBrojElektrana: " . $StaraVrednostUkBrElektrana);
 
     // Provera da li je vrednost veća od 0 pre dekrementiranja
     if ($StaraVrednostUkBrElektrana > 0) {
@@ -80,9 +76,6 @@ public function InkrementirajBrojEvidencija($IDStatusa)
 
 public function DajSifruNaOsnovuNaziva($naziv)
 {
-    // Logovanje poziva metode
-    error_log("Metoda DajSifruNaOsnovuNaziva je pozvana sa nazivom: " . $naziv);
-
     // Provera vrednosti naziva i vraćanje odgovarajuće šifre
     if ($naziv === 'Вода') {
         return 0;
