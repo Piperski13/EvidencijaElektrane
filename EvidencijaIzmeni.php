@@ -23,7 +23,7 @@
 	   $mesto=$_POST['mesto'];
 	   $adresa=$_POST['adresa'];
 	   $datumPustanjaURad=$_POST['datumPustanjaURad'];
-		 
+
 		 $sifraVrstePogona=$_POST['sifraVrstePogona'];
 		 $StaraSifraVrstePogona=$_POST['staraSifraVrstePogona'];
 	  
@@ -32,6 +32,7 @@
 			require "klase/BaznaTabela.php";
 			require "klase/DBEvidencijaElektrana.php";
 			require "klase/DBVrstaPogona.php";
+			require "klase/Evidencija.php";
 	
 			$KonekcijaObject = new Konekcija('klase/BaznaParametriKonekcije.xml');
 			$KonekcijaObject->connect();
@@ -40,6 +41,12 @@
 					// Kreiraj objekte za evidenciju i vrstu pogona
 					$EvidencijaObject = new DBEvidencijaElektrana($KonekcijaObject, 'EvidencijaElektrana');
 					$VrstaPogonaObject = new DBVrstaPogona($KonekcijaObject, 'VrstaPogona');
+					
+					$EvidencijaObjectPravilo = new Evidencija($KonekcijaObject, 'vrstapogona');
+					$dozvoljenaEvidencija=$EvidencijaObjectPravilo->DaLiImaMestaZaEvidencijuElektrane($sifraVrstePogona);
+						
+					if ($dozvoljenaEvidencija=="DA")
+						{
 	
 					// Provera da li je šifra vrste pogona promenjena
 					if ($sifraVrstePogona != $StaraSifraVrstePogona) {
@@ -55,6 +62,7 @@
 			} else {
 					echo "Nije uspostavljena konekcija ka bazi podataka!";
 			}
+		}
 		
     $KonekcijaObject->disconnect();
 	   
