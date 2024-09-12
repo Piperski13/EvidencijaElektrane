@@ -13,5 +13,5 @@ Ovaj repozitorijum sadrži izvorni kod web aplikacije koja koristi PHP za upravl
    - Dodavati evidenciju elektrane
    - Brisati evidencije elektrane
    - Ažurirati evidencije elektrane
-4. **Parametarska štampa**: Mogućnost štampanja evidencije elektrane na osnovu njenog ID-a.
-
+4. **Poslovno pravilo**: Pre svakog snimanja unosa, aplikacija proverava poslovno pravilo koje ograničava broj unetih elektrana sa istom vrstom pogona na maksimalno 2. Ova vrednost je definisana i zabeležena u XML fajlovima i proverava se prilikom svakog unosa.
+5. **Parametarska štampa**: Mogućnost štampanja evidencije elektrane na osnovu njenog ID-a.
